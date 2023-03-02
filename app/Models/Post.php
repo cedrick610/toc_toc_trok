@@ -21,5 +21,14 @@ class Post extends Model
     public function comment()
     {
         return $this->hasMany(Comment::class);
+
     }
+
+
+    protected $fillable = [
+        'content',
+        'image',
+        'tags',
+        'user_id',
+    ];
 }

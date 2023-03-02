@@ -1,6 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,11 +17,30 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// ************************** page de connexion / inscription ******************************
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
+
+// *********************** ACCUEIL (home.blade.php)/ liste des messages**************************
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+
+//***********************Toutes les authentification **********//
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//*********************Utilisateurs******************************* */
+Route::resource('/users', \App\Http\Controllers\UserController::class)->except('index', 'create','store');
+
+
+//*********************Posts******************************* */
+Route::resource('/posts', \App\Http\Controllers\PostController::class)->except('index', 'create','show');
+
+
+
+Route::get('/admin' , [\App\Http\Controllers\AdminController::class, 'index'])->name('admin')->middleware('admin');
+
+Route::get('/search' , [\App\Http\Controllers\PostController::class, 'search'])->name('search');
+
