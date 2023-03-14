@@ -99,7 +99,7 @@ class UserController extends Controller
 
         }else if  (Auth::user()->role_id == '2'){
             $user->delete();
-            return redirect()->route('admin')->with('messsage' , 'le compte a bien été supprimé');
+            return redirect()->route('admin')->with('message' , 'le compte a bien été supprimé');
 
         }else
         return redirect()->back()->withErrors(['erreur' => 'suppression du compte impossible']);

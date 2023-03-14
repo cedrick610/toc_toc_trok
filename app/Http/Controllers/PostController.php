@@ -9,25 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -37,35 +19,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-    $request->validate([
-        'content' => 'required|min:25|max:1000',
-        'tags' => 'required|min:3|max:50',
-        'image' => 'nullable'
+        $request->validate([
+            'content' => 'required|min:25|max:1000',
+            'tags' => 'required|min:3|max:50',
+            'image' => 'nullable'
 
 
-    ]);
+        ]);
 
-    Post::create([
-        'content' => $request->content,
-        'tags' => $request['tags'],
-        'image' => $request->input('image'),
-        'user_id' => Auth::user()->id
+        Post::create([
+            'content' => $request->content,
+            'tags' => $request['tags'],
+            'image' => $request->input('image'),
+            'user_id' => Auth::user()->id
 
-    ]);
+        ]);
 
-    return redirect()->route('home')->with('message' , 'Message crée avec succès');
+        return redirect()->route('home')->with('message', 'Message crée avec succès');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -75,7 +48,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post/edit' , ['post' =>$post]);
+        return view('post/edit', ['post' => $post]);
     }
 
     /**
@@ -85,23 +58,24 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Post $post)
+    public function update(Request $request, Post $post)
+
     {
-        
-        
+        $this->authorize('update', $post);
+
         $request->validate([
             'content' => 'required|min:25|max:1000',
             'tags' => 'required|min:3|max:50',
             'image' => 'nullable'
-    
-    
+
+
         ]);
-    
+
         $post->update($request->all());
-    
- 
-    
-        return redirect()->route('home')->with('message' , 'Message a bien été modifié avec succès');
+
+
+
+        return redirect()->route('home')->with('message', 'Message a bien été modifié avec succès');
     }
 
     /**
@@ -112,8 +86,29 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
         $post->delete();
 
-        return redirect()->route('home')->with('Message' , 'suppression réussie');
+        return redirect()->route('home')->with('message', 'suppression réussie');
+    }
+
+
+    public function search(request $request)
+    {
+        $request->validate([
+
+            'search' => 'required|min:3|max:20',
+
+        ]);
+
+        $search = $request->input('search');
+        //on va chercher les messages qui comportent cette recherche
+        //dans leur tags et / ou dans leur contenue
+
+        $posts = Post::where('tags', 'like', "%$search%")
+            ->orwhere('content', 'like', "%$search%")
+            ->latest()->paginate(3);
+
+        return view('home', ['posts' => $posts]);
     }
 }

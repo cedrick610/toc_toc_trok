@@ -4,7 +4,7 @@
     <div class="container m-5 p-5 mx-auto">
 
         <div class="text-center">
-            <h1>Bienvenue sur le réseau social Cédrick  !</h1>
+            <h1>TOC TOC TROK !</h1>
         </div>
 
         <div class="row mt-5 w-50 mx-auto">

@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $with = ['user'];
+    protected $with = ['user', 'comments'];
 
 
     public function user()
@@ -18,7 +18,7 @@ class Post extends Model
     }
 
 
-    public function comment()
+    public function comments()
     {
         return $this->hasMany(Comment::class);
 

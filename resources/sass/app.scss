@@ -6,3 +6,46 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+
+
+.fond-jaune{
+    background-color: #ffd700;
+    margin-bottom: 30px;
+
+}
+
+.comment-jaune{
+    background-color: #ffd700;
+}
+
+
+nav{
+    height: 80px;
+
+    
+}
+
+body {
+    background-image: url('/public/images/shaking.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: roboto;
+    /* Autres styles CSS pour votre corps de page */
+}
+
+.back-h1{
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.titre-h1{
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+nav{
+    background-color:#ffd700;
+}

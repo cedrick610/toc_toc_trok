@@ -2,29 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+  
 
     /**
      * Store a newly created resource in storage.
@@ -34,19 +19,27 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'content' => 'required|min:25|max:1000',
+            'tags' => 'required|min:3|max:50',
+            'image' => 'nullable'
+    
+    
+        ]);
+    
+        Comment::create([
+            'content' => $request['content'],
+            'tags' => $request['tags'],
+            'image' => $request['image'],
+            'user_id' => Auth::user()['id'],
+            'post_id' => $request['post_id']
+    
+        ]);
+
+        return redirect()->route('home')->with('message' , 'Message crée avec succès');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -54,9 +47,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comment $comment)
     {
-        //
+        return view('comment/edit' , ['comment' =>$comment]);
     }
 
     /**
@@ -66,9 +59,21 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comment $comment)
     {
-        //
+        $this->authorize('update', $comment);
+        
+        $request->validate([
+            'content' => 'required|min:25|max:1000',
+            'tags' => 'required|min:3|max:50',
+            'image' => 'nullable'
+    
+    
+        ]);
+    
+        $comment->update($request->all());
+
+        return redirect()->route('home')->with('message' , 'Le commentaire a bien été modifié avec succès');
     }
 
     /**
@@ -77,8 +82,11 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        //
+        $this->authorize('delete', $comment);
+        $comment->delete();
+
+        return redirect()->route('home')->with('message' , 'suppression réussie');
     }
 }

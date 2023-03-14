@@ -39,6 +39,8 @@ Route::resource('/users', \App\Http\Controllers\UserController::class)->except('
 Route::resource('/posts', \App\Http\Controllers\PostController::class)->except('index', 'create','show');
 
 
+Route::resource('/comments' , \App\Http\Controllers\CommentController::class)->except('index', 'create', 'show');
+
 
 Route::get('/admin' , [\App\Http\Controllers\AdminController::class, 'index'])->name('admin')->middleware('admin');
 
