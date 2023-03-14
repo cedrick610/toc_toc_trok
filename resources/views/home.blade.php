@@ -19,6 +19,7 @@
                             {{-- ajout de message --}}
                             <form method="POST" action="{{ route('posts.store') }}">
                                 @csrf
+                                <input type="file" name="image" class="form-control">
 
                                 <div class="row mb-3">
                                     <label for="content"
@@ -96,17 +97,18 @@
                             <h5 class="card-title"> {{ $post->tags }}</h5>
                             <p class="card-text">{{ $post->content }}</p>
 
-{{-- ---------------------------------------------Bouton ----------------------- --}}
+                            {{-- ---------------------------------------------Bouton ----------------------- --}}
                             @can('update', $post)
-                            <div class="btn-group ">
-                                <a href="{{ route('posts.edit', $post) }}" class="btn btn-primary">modifier</a>
+                                <div class="btn-group ">
+                                    <a href="{{ route('posts.edit', $post) }}" class="btn btn-primary">modifier</a>
                                 @endcan
                                 <form action="{{ route('posts.destroy', $post) }}"method="POST">
                                     @csrf
                                     @method('delete')
                                     @can('update', $post)
-                                    <button type="submit" class="btn btn-danger">Supprimer </button>
+                                        <button type="submit" class="btn btn-danger">Supprimer </button>
                                     @endcan
+                                    <input type="file" name="image" class="form-control">
                             </div>
                             </form>
                         </div>
@@ -122,14 +124,15 @@
                     <p>{{ $comment->user->pseudo }}</p <a href="{{ route('comments.edit', $comment) }}"
                         class="btn btn-primary">modifier</a>
 
-                  {{-- --------------------Bouton --}}
+                    {{-- --------------------Bouton --}}
                     <form action="{{ route('comments.destroy', $comment) }}"method="POST">
                         @can('update', $comment)
-                        <a href="{{ route('comments.edit', $comment) }}" class="btn btn-primary">modifier</a>
+                            <a href="{{ route('comments.edit', $comment) }}" class="btn btn-primary">modifier</a>
                         @endcan
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-danger">Supprimer </button>
+                        <input type="file" name="image" class="form-control">
                     </form>
                 @endforeach
 
@@ -221,6 +224,7 @@
 
                         <div class="row mb-3">
                             <label for="content" class="col-md-4 col-form-label text-md-end">{{ __('Content') }}</label>
+                            <input type="file" name="image" class="form-control">
 
                             <div class="col-md-6">
                                 <input id="content" type="text"

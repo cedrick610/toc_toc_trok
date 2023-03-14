@@ -62,7 +62,7 @@ class CommentController extends Controller
     public function update(Request $request, Comment $comment)
     {
         $this->authorize('update', $comment);
-        
+
         $request->validate([
             'content' => 'required|min:25|max:1000',
             'tags' => 'required|min:3|max:50',
