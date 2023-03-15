@@ -20,11 +20,11 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md   shadow-sm ">
+        <nav class="navbar navbar-expand-md   shadow-sm sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+              
+                    <img src="{{asset('/images/toctoctrock.png')}} " alt="" id="logo">
+            
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -73,8 +73,13 @@
                                     </form>
                                 @endauth
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->role_id == 2)
+                                    <div>
+                                        <a class="dropdown-item" href="{{ route('admin', $user = Auth::user()) }}">Back-office</a>
+                                    </div>
+                                    @endif
 
-                                    <a href="{{ route('users.edit', $user = Auth::user()) }}">Mon compte</a>
+                                    <a class="dropdown-item" href="{{ route('users.edit', $user = Auth::user()) }}">Mon compte</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();

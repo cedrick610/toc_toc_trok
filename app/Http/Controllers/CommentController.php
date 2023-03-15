@@ -22,21 +22,20 @@ class CommentController extends Controller
         $request->validate([
             'content' => 'required|min:25|max:1000',
             'tags' => 'required|min:3|max:50',
-            'image' => 'nullable'
-    
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     
         ]);
     
         Comment::create([
             'content' => $request['content'],
             'tags' => $request['tags'],
-            'image' => $request['image'],
-            'user_id' => Auth::user()['id'],
+            'image' => isset($request['image']) ? uploadImage($request['image']) : "default_user.jpg",
+            'user_id' => Auth::user()->id,
             'post_id' => $request['post_id']
     
         ]);
 
-        return redirect()->route('home')->with('message' , 'Message crée avec succès');
+        return redirect()->route('home')->with('message' , 'Commentaire crée avec succès');
     }
 
     
@@ -66,12 +65,16 @@ class CommentController extends Controller
         $request->validate([
             'content' => 'required|min:25|max:1000',
             'tags' => 'required|min:3|max:50',
-            'image' => 'nullable'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
     
     
         ]);
     
-        $comment->update($request->all());
+        $comment->content = $request->input('content');
+        $comment->image = isset($request['image']) ? uploadImage($request['image']) : $comment->image;
+        $comment->tags = $request->input('tags');
+
+        $comment->save();
 
         return redirect()->route('home')->with('message' , 'Le commentaire a bien été modifié avec succès');
     }

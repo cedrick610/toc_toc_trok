@@ -8,13 +8,13 @@
 
 <main class="container">
 
-    <h1>Modifier le message</h1>
+    <h1 class="titre-modif-message">Modifier le message</h1>
    
 
-    <h3 class="pb-3">Modifier mes informations</h3>
+    <h3 class="pb-3 titre-modif-info">Modifier mes informations</h3>
     <div class="row">
 
-        <form class="col-4 mx-auto" action="{{route('posts.update', $post)}}" method="post"}}>
+        <form class="col-4 mx-auto" action="{{route('posts.update', $post)}}" method="post"}} enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -26,8 +26,8 @@
 
             <div class="form-group">
                 <label for="image">Nouvelle image</label>
-                <input required type="text" class="form-control"  name="image" value="{{$post->image}}" id="image">
-                
+              
+              <input type="file" name="image" class="form-control">
             </div>
 
             <div class="form-group">
@@ -37,7 +37,7 @@
             </div>
 
 
-            <button type="submit" class="btn btn-primary">Valider</button>
+            <button type="submit" class="btn btn-primary btn-modif-message">Valider</button>
         </form>
     </div>
 </main>

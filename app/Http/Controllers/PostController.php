@@ -22,7 +22,7 @@ class PostController extends Controller
         $request->validate([
             'content' => 'required|min:25|max:1000',
             'tags' => 'required|min:3|max:50',
-            'image' => 'nullable'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
 
         ]);
@@ -30,7 +30,7 @@ class PostController extends Controller
         Post::create([
             'content' => $request->content,
             'tags' => $request['tags'],
-            'image' => $request->input('image'),
+            'image' => isset($request['image']) ? uploadImage($request['image']) : "default_user.jpg",
             'user_id' => Auth::user()->id
 
         ]);
@@ -66,12 +66,15 @@ class PostController extends Controller
         $request->validate([
             'content' => 'required|min:25|max:1000',
             'tags' => 'required|min:3|max:50',
-            'image' => 'nullable'
-
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
 
-        $post->update($request->all());
+        $post->content = $request->input('content');
+        $post->image = isset($request['image']) ? uploadImage($request['image']) : $post->image;
+        $post->tags = $request->input('tags');
+
+        $post->save();
 
 
 

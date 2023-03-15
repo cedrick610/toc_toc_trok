@@ -1,51 +1,85 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url("https://fonts.bunny.net/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
 
-
-
-.fond-jaune{
+.fond-jaune {
     background-color: #ffd700;
     margin-bottom: 30px;
-
 }
 
-.comment-jaune{
+.comment-jaune {
     background-color: #ffd700;
 }
 
-
-nav{
+nav {
     height: 80px;
-
-    
 }
 
 body {
-    background-image: url('/public/images/shaking.jpg');
+    background-image: url("/public/images/shaking.jpg");
     background-size: cover;
     background-attachment: fixed;
     font-family: roboto;
     /* Autres styles CSS pour votre corps de page */
 }
 
-.back-h1{
+.back-h1 {
     text-align: center;
     margin-top: 100px;
     margin-bottom: 100px;
 }
 
-.titre-h1{
+.titre-h1 {
     text-align: center;
     margin-top: 100px;
     margin-bottom: 100px;
 }
 
-nav{
-    background-color:#ffd700;
+.titre-modif-message {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.titre-modif-commentaire {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.btn-modif-message {
+    margin-top: 5px;
+}
+
+.titre-modif-info {
+    text-align: center;
+}
+
+.titre-acceuil {
+    text-align: center;
+}
+
+.titre-acceuil {
+    color: white;
+}
+
+
+
+
+#logo {
+    width: 200px;
+}
+
+#logo-home {
+    width: 400px;
+}
+
+@media screen and (max-width: 576px) {
+    #logo-home {
+        width: 80vw;
+    }
 }
