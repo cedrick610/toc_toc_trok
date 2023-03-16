@@ -38,11 +38,15 @@ Route::resource('/users', \App\Http\Controllers\UserController::class)->except('
 //*********************Posts******************************* */
 Route::resource('/posts', \App\Http\Controllers\PostController::class)->except('index', 'create','show');
 
-
+//*****************************Comment****************** */
 Route::resource('/comments' , \App\Http\Controllers\CommentController::class)->except('index', 'create', 'show');
 
 
 Route::get('/admin' , [\App\Http\Controllers\AdminController::class, 'index'])->name('admin')->middleware('admin');
+//*********************************Barre de recherche**************** */
 
 Route::get('/search' , [\App\Http\Controllers\PostController::class, 'search'])->name('search');
 
+//********************************Politique et confidentialités ****************/
+
+Route::get('/politique' , [\App\Http\Controllers\HomeController::class, 'politique'])->name('politique');

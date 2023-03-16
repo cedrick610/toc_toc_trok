@@ -8,7 +8,7 @@
 
 <main class="container">
 
-    <h1>Mon compte</h1>
+    <h1 class="h1-mon-compte text-center">Mon compte</h1>
     <form action="{{route('users.destroy', $user)}}" method="post">
     @csrf
     @method("delete")
@@ -16,7 +16,7 @@
 
     </form>
 
-    <h3 class="pb-3">Modifier mes informations</h3>
+    <h3 class="pb-3 text-center">Modifier mes informations</h3>
     <div class="row">
 
         <form class="col-4 mx-auto" action="{{route('users.update', $user)}}" method="post"}}>
@@ -35,7 +35,7 @@
                 
             </div>
 
-            <button type="submit" class="btn btn-primary">Primary</button>
+            <button type="submit" class="btn btn-primary btn-mon-compte">Valider</button>
         </form>
     </div>
 </main>

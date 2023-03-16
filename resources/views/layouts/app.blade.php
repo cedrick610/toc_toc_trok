@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-md   shadow-sm sticky-top">
             <div class="container">
               
-                    <img src="{{asset('/images/toctoctrock.png')}} " alt="" id="logo">
+                    <a href="home.blade.php"><img src="{{asset('/images/toctoctrock.png')}} " alt="" id="logo"></a>
             
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -43,13 +43,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link connexion-app" href="{{ route('login') }}">{{ __('Connexion') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }} </a>
+                                    <a class="nav-link inscription-app" href="{{ route('register') }}">{{ __('Inscription') }} </a>
                                 </li>
                             @endif
                         @else

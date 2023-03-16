@@ -9,8 +9,8 @@
 <h1 class="back-h1">Back-office admin</h1>
 
 {{-- Posts --}}
-<h2>Listes des postes</h2>
-<div class="container">
+<h2 class="titre-admin">Listes des postes</h2>
+<div class="container table-responsive">
 <table class="table table-primary">
     <thead>
       <tr>
@@ -45,8 +45,8 @@
   </table>
 </div>
 {{-- -------user --}}
-<h2>Listes des utilisateurs</h2>
-<div class="container">
+<h2 class="titre-admin-users">Listes des utilisateurs</h2>
+<div class="container table-responsive">
     <table class="table table-primary">
       <thead>
         <tr class="">
@@ -71,8 +71,8 @@
     </table>
  </div> 
 {{-- -commentaires-- --}}
-<h2>Listes des commentaires</h2>
- <div class="container">
+<h2 class="titre-admin-comment">Listes des commentaires</h2>
+ <div class="container table-responsive">
   <table class="table table-primary">
     <thead>
       <tr class="">

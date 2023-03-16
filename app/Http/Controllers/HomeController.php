@@ -39,7 +39,15 @@ class HomeController extends Controller
     }
 
 
-
-
+public function politique(){
+    
+    return view('politique');
+}
 
 }
+
+
+
+
+
+

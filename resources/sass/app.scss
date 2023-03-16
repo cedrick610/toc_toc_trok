@@ -33,6 +33,7 @@ body {
     margin-top: 100px;
     margin-bottom: 100px;
 }
+//***************Page modification**********//
 
 .titre-h1 {
     text-align: center;
@@ -43,12 +44,13 @@ body {
 .titre-modif-message {
     text-align: center;
     margin-bottom: 30px;
+    margin-top: 40px;
 }
 
 .titre-modif-commentaire {
     text-align: center;
     margin-bottom: 30px;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .btn-modif-message {
@@ -67,16 +69,79 @@ body {
     color: white;
 }
 
+.h1-mon-compte{
+    margin-top: 30px;
+}
+
+.btn-mon-compte{
+    margin-top: 5px;
+}
 
 
-
+//************Logo**********//
 #logo {
     width: 200px;
 }
 
 #logo-home {
     width: 400px;
+
 }
+
+.connexion-app{
+    color: black;
+}
+.inscription-app{
+    color: black;
+}
+//*************Admin**********//
+.titre-admin{
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+
+}
+
+.titre-admin-users{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: white;
+
+}
+
+.titre-admin-comment{
+    text-align: center;
+    color: white;
+}
+
+//************Page index.blade*********//
+
+.btn-index1{
+    background-color: #ffd700;
+    color: black;
+}
+
+.btn-index2{
+    background-color: #ffd700;
+    color: black;
+}
+
+
+.text-h1-index{
+    margin-bottom: 50px;
+}
+
+
+
+
+
+
+
+
+
+//***************Médiaquery************//
+
 
 @media screen and (max-width: 576px) {
     #logo-home {

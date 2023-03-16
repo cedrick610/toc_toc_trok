@@ -93,7 +93,7 @@
                 <div class="container-md boucle-message">
                     <div class="card fond-noir mx-auto">
                         Posté par {{ $post->user->pseudo }}
-                        <img src="{{ asset('images/' . $post->image) }}" class="card-img-top " alt="...">
+                        <img src="{{ asset('images/' . $post->image) }}" class="card-img-top w-50 mx-auto" alt="">
                         <div class="card-body message-post">
                             <h5 class="card-title"> {{ $post->tags }}</h5>
                             <p class="card-text">{{ $post->content }}</p>
